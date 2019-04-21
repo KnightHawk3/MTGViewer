@@ -1,37 +1,37 @@
 import { LayoutModule } from '@angular/cdk/layout';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   MatButtonModule,
+  MatCardModule,
+  MatGridListModule,
   MatIconModule,
-  MatListModule,
-  MatSidenavModule,
-  MatToolbarModule,
+  MatMenuModule,
 } from '@angular/material';
 
-import { AppComponent } from './app.component';
+import { HomeComponent } from './home.component';
 
-describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [HomeComponent],
       imports: [
         NoopAnimationsModule,
         LayoutModule,
         MatButtonModule,
+        MatCardModule,
+        MatGridListModule,
         MatIconModule,
-        MatListModule,
-        MatSidenavModule,
-        MatToolbarModule,
+        MatMenuModule,
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
