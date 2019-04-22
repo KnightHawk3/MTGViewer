@@ -5,9 +5,13 @@ import {Card} from '../../../api/models/card';
   selector: 'app-card',
   template: `
     <div *ngIf="card">
-      <img *ngIf="card.image_uris" [ngStyle]="{'height': height}" alt="{{card.name}} scanned" [src]="card.image_uris.border_crop"/>
-      <img *ngIf="card?.card_faces?.length > 1" [ngStyle]="{'height': height}" alt="{{card.name}} scanned"
-           [src]="card.card_faces[0].image_uris.normal"/>
+      <span *ngIf="card.image_uris; then single else multiple"></span>
+      <ng-template #single>
+        <img [ngStyle]="{'height': height}" alt="{{card.name}} scanned" [src]="card.image_uris.border_crop"/>
+      </ng-template>
+      <ng-template #multiple>
+        <img #multiple [ngStyle]="{'height': height}" alt="{{card.name}} scanned" [src]="card.card_faces[0].image_uris.border_crop"/>
+      </ng-template>
     </div>
   `,
   styles: []

@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, NgForm} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
 import {CollectionService} from '../../core/service/collection.service';
-import {Card} from '../../api/models/card';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-collection-import',
   template: `
     <div>
+      <p *ngIf="success">Done!</p>
       <form (ngSubmit)="onSubmit()">
         <label>
           Collection:
@@ -15,24 +14,23 @@ import {Observable} from 'rxjs';
         </label>
         <button type="submit">Go!</button>
       </form>
-      <div *ngIf="$cards">
-        <app-card-grid [cards]="$cards"></app-card-grid>
-      </div>
     </div>
   `,
   styles: []
 })
 export class CollectionImportComponent implements OnInit {
   collectionList = new FormControl('');
-  $cards: Observable<Array<Card>>;
+  success = false;
 
-  constructor(private collectionSevice: CollectionService) { }
+  constructor(private collectionSevice: CollectionService) {
+  }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    this.collectionSevice.setCollection(this.collectionList.value.split(/\r?\n/));
-    this.$cards = this.collectionSevice.getCollection();
+    this.collectionSevice.setCollection(this.collectionList.value.split(/\r?\n/)).subscribe(
+      (it) => this.success = it,
+      (error) => console.error(error));
   }
 }

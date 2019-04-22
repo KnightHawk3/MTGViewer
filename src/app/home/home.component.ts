@@ -9,7 +9,7 @@ import {CollectionService} from '../core/service/collection.service';
   template: `
     <div class="grid-container">
       <h1 class="mat-h1">Cards!</h1>
-      <app-card-grid></app-card-grid>
+      <app-card-grid [cards]="cards"></app-card-grid>
     </div>`,
   styles: [`
     .grid-container {
@@ -37,9 +37,11 @@ import {CollectionService} from '../core/service/collection.service';
   `]
 })
 export class HomeComponent implements OnInit {
-  constructor() {
+  private cards: Observable<Card[]>;
+  constructor(private collectionService: CollectionService) {
   }
 
   ngOnInit(): void {
+    this.cards = this.collectionService.getCollection();
   }
 }

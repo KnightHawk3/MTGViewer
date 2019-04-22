@@ -13,9 +13,9 @@ import {map} from 'rxjs/operators';
                    [opened]="!(isHandset$ | async)">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item href="#">Link 1</a>
-          <a mat-list-item href="#">Link 2</a>
-          <a mat-list-item href="#">Link 3</a>
+          <a mat-list-item routerLink="/home">Home</a>
+          <a mat-list-item routerLink="/import">Import Collection</a>
+          <a mat-list-item routerLink="/deckbuilder">Build deck</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
