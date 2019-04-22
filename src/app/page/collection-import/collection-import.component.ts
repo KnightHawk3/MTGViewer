@@ -22,14 +22,14 @@ export class CollectionImportComponent implements OnInit {
   collectionList = new FormControl('');
   success = false;
 
-  constructor(private collectionSevice: CollectionService) {
+  constructor(private collectionService: CollectionService) {
   }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    this.collectionSevice.setCollection(this.collectionList.value.split(/\r?\n/)).subscribe(
+    this.collectionService.setCollection(this.collectionList.value.split(/\r?\n/)).subscribe(
       (it) => this.success = it,
       (error) => console.error(error));
   }
